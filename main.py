@@ -2,8 +2,8 @@ from typing import List
 from unicodedata import category
 from uuid import UUID, uuid4
 from fastapi import FastAPI, HTTPException
-from models.baseModel import ProductModel
-from models.productModel import Product, ProductUpdateRequest,category
+from models.productModel import ProductModel, create_product
+# from models.productModel import Product, ProductUpdateRequest,category, create_product
 # from mongoengine import connect
 from database import *
 from routers.product import router_products
@@ -58,7 +58,7 @@ async def root():
 
 # 
 # async def save_products(name: str,category: str):
-@router_products.post("/", response_model=productModel, summary="Create a new contact")
+@router_products.post("/", summary="Create a new contact")
 async def create(name: str, category: str):
     return await create_product(name=name, category=category)
 
